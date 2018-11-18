@@ -1,14 +1,16 @@
-const net  = require("net");
-const http = require("http");
+import * as net  from "net";
+import * as http from "http";
 
-const serverHost = "0.0.0.0";
+const serverHost: string = "0.0.0.0";
 // TODO: Hard code
-const serverPort = "8181";
+const serverPort: number = 8181;
 
 // Connection command example: curl -H "X-HOST: example.com" -H "X-PORT: 80" --data-binary @req.txt localhost:8181 
-const server = http.createServer((req, res)=>{
-  const host = req.headers['x-host'];
-  const port = req.headers['x-port'];
+const server = http.createServer((req: http.IncomingMessage, res: http.OutgoingMessage)=>{
+  // TODO: Not to use `as`
+  const host: string = req.headers['x-host'] as string;
+  // TODO: Not to use `as`
+  const port: number = parseInt((req.headers['x-port'] as string) || "80");
 
   const client = new net.Socket();
   client.connect(port, host, ()=>{
@@ -18,7 +20,7 @@ const server = http.createServer((req, res)=>{
     });
   });
 
-  client.on('data', (data)=>{
+  client.on('data', (data: Buffer)=>{
     res.write(data);
   });
 
