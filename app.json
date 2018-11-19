@@ -1,0 +1,11 @@
+{
+    "name": "TCP over HTTP Server",
+    "description": "TCP over HTTP Server",
+    "repository": "https://github.com/nwtgck/tcphttp-server",
+    "keywords": [
+        "http",
+        "tcp",
+        "tcp-over-http",
+        "server"
+    ]
+}
