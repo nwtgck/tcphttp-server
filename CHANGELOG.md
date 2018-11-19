@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 
+## [0.1.2] - 2018-11-19
+### Changed
+* Enable CORS
+
 ## [0.1.1] - 2018-11-19
 ### Added
 * Support Heroku
@@ -13,5 +17,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 ### Added
 * Create a basic TCP-over-HTTP server
 
-[Unreleased]: https://github.com/nwtgck/tcphttp-server/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/nwtgck/tcphttp-server/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/nwtgck/tcphttp-server/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/nwtgck/tcphttp-server/compare/v0.1.0...v0.1.1

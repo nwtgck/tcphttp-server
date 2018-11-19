@@ -1,6 +1,6 @@
 {
   "name": "tcphttp-server",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "TCP over HTTP server",
   "main": "dis/src/index.js",
   "scripts": {
