@@ -1,0 +1,32 @@
+{
+  "name": "tcphttp-server",
+  "version": "0.1.0",
+  "description": "TCP over HTTP server",
+  "main": "dis/src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/src/index.js",
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "http",
+    "tcp",
+    "tcp-over-http",
+    "server"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nwtgck/tcphttp-server"
+  },
+  "author": "Ryo Ota <nwtgck@gmail.com> (https://github.com/nwtgck)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^10.12.9",
+    "@types/yargs": "^12.0.1",
+    "typescript": "^3.1.6"
+  },
+  "dependencies": {
+    "yargs": "^12.0.4"
+  }
+}
