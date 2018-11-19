@@ -12,9 +12,14 @@ const parser = yargs
 const args = parser.parse(process.argv);
 
 const serverHost: string = "0.0.0.0";
-// TODO: Hard code
 const serverPort: number = args["http-port"];
 
 tcphttp.server.listen(serverPort, serverHost, ()=>{
   console.log(`Running on ${serverPort}...`);
+});
+
+
+// Not to down whole server
+process.on('uncaughtException', function (err) {
+  console.error('on uncaughtException: ', err);
 });
