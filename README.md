@@ -1,17 +1,19 @@
 # tcphttp-server
-[![npm](https://img.shields.io/npm/v/tcphttp-server.svg)](https://www.npmjs.com/package/tcphttp-server) [![Build Status](https://travis-ci.com/nwtgck/tcphttp-server.svg?token=TuxNpqznwwyy7hyJwBVm&branch=develop)](https://travis-ci.com/nwtgck/tcphttp-server)
+[![npm](https://img.shields.io/npm/v/tcphttp-server.svg)](https://www.npmjs.com/package/tcphttp-server) [![Build Status](https://travis-ci.com/nwtgck/tcphttp-server.svg?token=TuxNpqznwwyy7hyJwBVm&branch=develop)](https://travis-ci.com/nwtgck/tcphttp-server) 
+[![Docker Automated build](https://img.shields.io/docker/automated/nwtgck/tcphttp-server.svg)](https://hub.docker.com/r/nwtgck/tcphttp-server/)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 TCP over HTTP server
 
-## Usage
+## Quick Start
 
-Here is an example to request to example.com.  
-Note that `X-Host` and `X-Port` headers. These headers are special for tcphttp-server.
+Here is examples to show how to use TCP over HTTP. Actually, the following examples show "HTTP over HTTPS" and "HTTPS over HTTPS".  
+
+Here is an example to request to example.com.
 
 ```bash
-curl -H "X-Host: example.com" -H "X-Port: 80" --data-binary @- https://tcphttp.glitch.me/ <<EOS
+curl --data-binary @- 'https://tcphttp.glitch.me?host=example.com&port=80' <<EOS
 GET / HTTP/1.1
 Host: example.com
 Connection: close
@@ -21,15 +23,35 @@ EOS
 ```
 
 
-Here is an example to use HTTPS.  
-Note that `X-TLS` header. The header is special for tcphttp-server.
+Here is an example to use HTTPS.
 
 ```bash
-curl -H "X-Host: example.com" -H "X-Port: 443" -H "X-TLS: true" --data-binary @- https://tcphttp.glitch.me/ <<EOS
+curl --data-binary @- 'https://tcphttp.glitch.me?host=example.com&port=443&tls' <<EOS
 GET / HTTP/1.1
 Host: example.com
 Connection: close
 
 
 EOS
+```
+
+## Connection Flow
+
+```
+You ==HTTP Request => [tcphttp-server] ==TCP=> example.com:80
+You <=HTTP Response== [tcphttp-server] <=TCP== example.com:80
+```
+
+## Run Server on Docker
+
+Run a tcphttp-server on <http://localhost:8181> by the following command.
+
+```bash
+docker run -p 8181:8080 nwtgck/tcphttp-server
+```
+
+You can also specify options as follows. 
+
+```bash
+docker run -p 8181:80 nwtgck/tcphttp-server --http-port=80
 ```
