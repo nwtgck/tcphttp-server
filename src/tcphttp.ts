@@ -18,7 +18,13 @@ function boolStrToBool(boolStr: string | undefined): boolean {
   if (boolStr === undefined) {
     return false;
   } else {
-    return boolStr.toLocaleLowerCase() === "true";
+    switch (boolStr.toLocaleLowerCase()) {
+      case "":
+      case "true":
+        return true;
+      default:
+        return false;
+    }
   }
 }
 
@@ -35,7 +41,7 @@ export const server = http.createServer((req: http.IncomingMessage, res: http.Se
   if (query !== undefined &&
       typeof query[HOST_PARAM_NAME] === "string" &&
       typeof query[PORT_PARAM_NAME] === "string" && (query[PORT_PARAM_NAME] as string).match(/^\d+$/) &&
-      (query[TLS_PARAM_NAME] === undefined || typeof query[TLS_PARAM_NAME] === "string" && (query[TLS_PARAM_NAME] as string).match(/^(true|false)$/i))) {
+      (query[TLS_PARAM_NAME] === undefined || typeof query[TLS_PARAM_NAME] === "string" && (query[TLS_PARAM_NAME] as string).match(/^(true|false|)$/i))) {
 
     const host: string     = query[HOST_PARAM_NAME] as string;
     const port: number     = parseInt(query[PORT_PARAM_NAME] as string);
