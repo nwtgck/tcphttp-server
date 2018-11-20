@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 
+## [0.3.0] - 2018-11-20
+### Changed 
+* Use query parameters to specify "host", "port", "tls" instead of HTTP headers.
+
 ## [0.2.0] - 2018-11-19
 ### Added
 * Allow users to use SSL/TLS by `X-TLS` header
