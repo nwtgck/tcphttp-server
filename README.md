@@ -5,13 +5,14 @@
 
 TCP over HTTP server
 
-## Usage
+## Quick Start
 
-Here is an example to request to example.com.  
-Note that `X-Host` and `X-Port` headers. These headers are special for tcphttp-server.
+Here is examples to show how to use TCP over HTTP. Actually, the following examples show "HTTP over HTTPS" and "HTTPS over HTTPS".  
+
+Here is an example to request to example.com.
 
 ```bash
-curl -H "X-Host: example.com" -H "X-Port: 80" --data-binary @- https://tcphttp.glitch.me/ <<EOS
+curl --data-binary @- 'https://tcphttp.glitch.me?host=example.com&port=80' <<EOS
 GET / HTTP/1.1
 Host: example.com
 Connection: close
@@ -21,15 +22,21 @@ EOS
 ```
 
 
-Here is an example to use HTTPS.  
-Note that `X-TLS` header. The header is special for tcphttp-server.
+Here is an example to use HTTPS.
 
 ```bash
-curl -H "X-Host: example.com" -H "X-Port: 443" -H "X-TLS: true" --data-binary @- https://tcphttp.glitch.me/ <<EOS
+curl --data-binary @- 'https://tcphttp.glitch.me?host=example.com&port=443&tls' <<EOS
 GET / HTTP/1.1
 Host: example.com
 Connection: close
 
 
 EOS
+```
+
+## Connection Flow
+
+```
+You ==HTTP Request => [tcphttp-server] ==TCP=> example.com:80
+You <=HTTP Response== [tcphttp-server] <=TCP== example.com:80
 ```
