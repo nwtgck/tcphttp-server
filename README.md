@@ -1,5 +1,6 @@
 # tcphttp-server
-[![npm](https://img.shields.io/npm/v/tcphttp-server.svg)](https://www.npmjs.com/package/tcphttp-server) [![Build Status](https://travis-ci.com/nwtgck/tcphttp-server.svg?token=TuxNpqznwwyy7hyJwBVm&branch=develop)](https://travis-ci.com/nwtgck/tcphttp-server)
+[![npm](https://img.shields.io/npm/v/tcphttp-server.svg)](https://www.npmjs.com/package/tcphttp-server) [![Build Status](https://travis-ci.com/nwtgck/tcphttp-server.svg?token=TuxNpqznwwyy7hyJwBVm&branch=develop)](https://travis-ci.com/nwtgck/tcphttp-server) 
+[![Docker Automated build](https://img.shields.io/docker/automated/nwtgck/tcphttp-server.svg)](https://hub.docker.com/r/nwtgck/tcphttp-server/)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
@@ -39,4 +40,18 @@ EOS
 ```
 You ==HTTP Request => [tcphttp-server] ==TCP=> example.com:80
 You <=HTTP Response== [tcphttp-server] <=TCP== example.com:80
+```
+
+## Run Server on Docker
+
+Run a tcphttp-server on <http://localhost:8181> by the following command.
+
+```bash
+docker run -p 8181:8080 nwtgck/tcphttp-server
+```
+
+You can also specify options as follows. 
+
+```bash
+docker run -p 8181:80 nwtgck/tcphttp-server --http-port=80
 ```
