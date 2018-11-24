@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 
+## [0.3.1] - 2018-11-24
+### Added 
+* Support installation as executable 
+
 ## [0.3.0] - 2018-11-20
 ### Changed 
 * Use query parameters to specify "host", "port", "tls" instead of HTTP headers.
