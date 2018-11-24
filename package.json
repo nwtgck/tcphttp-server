@@ -1,6 +1,6 @@
 {
   "name": "tcphttp-server",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "TCP over HTTP server",
   "bin": {
     "tcphttp-server": "dist/src/index.js"
