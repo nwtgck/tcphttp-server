@@ -42,7 +42,15 @@ You ==HTTP Request => [tcphttp-server] ==TCP=> example.com:80
 You <=HTTP Response== [tcphttp-server] <=TCP== example.com:80
 ```
 
-## Run Server on Docker
+## Run Server 
+
+### Way 1: Run server on Heroku
+
+Click the button below and run a server.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+### Way 2: Run server on Docker
 
 Run a tcphttp-server on <http://localhost:8181> by the following command.
 
@@ -54,4 +62,33 @@ You can also specify options as follows.
 
 ```bash
 docker run -p 8181:80 nwtgck/tcphttp-server --http-port=80
+```
+
+### Way 3: Run server with npm
+
+Install `tcphttp-server` as command as follows. 
+
+```bash
+npm install -g tcphttp-server
+```
+
+Then, run a server as follows.
+
+```bash
+tcphttp-server --http-port=8181
+```
+
+### Way 4: Run server from source 
+
+Run a server from the latest source.
+
+```bash
+# Clone this repository
+git clone https://github.com/nwtgck/tcphttp-server.git
+# Go to the directory
+cd tcphttp-server
+# Install dependencies
+npm install
+# Run a server
+npm start
 ```
