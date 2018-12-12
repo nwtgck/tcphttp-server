@@ -30,6 +30,22 @@ jobs:
       - checkout
       # Check whether "docker build" is succcessful or not
       - run: docker build -t tcphttp .
+      - run:
+          name: Working test with Docker image
+          command: |
+            # Create a network
+            docker network create tcphttp-net
+            # Run ngix server
+            docker run --name=web1 --net=tcphttp-net --expose=80 --rm -d nginx:1.15-alpine
+            # Run tcphttp sercver
+            docker run --rm --net=tcphttp-net -d -p 8080:8080 tcphttp
+            # Request indirectly to the nginx server via the tcphttp server
+            curl --data-binary @- 'http://localhost:8080?host=web1&port=80' <<EOS
+            GET / HTTP/1.1
+            Host: web1
+            Connection: close
+
+            EOS
 
 workflows:
   version: 2
