@@ -1,0 +1,97 @@
+version: 2
+
+ANCHORS:
+ node_steps: &node_steps
+   steps:
+     - checkout
+     - run: npm install
+     # Check whether "run build" is successful
+     - run: npm run build
+
+jobs:
+  node_10:
+    docker:
+      - image: circleci/node:10
+    <<: *node_steps
+  
+  node_8:
+    docker:
+      - image: circleci/node:8
+    <<: *node_steps
+  
+  node_6:
+    docker:
+      - image: circleci/node:6
+    <<: *node_steps
+  
+  docker_test:
+    machine: true
+    steps:
+      - checkout
+      # Check whether "docker build" is succcessful or not
+      - run: docker build -t tcphttp .
+      - run:
+          name: Working test with Docker image
+          command: |
+            # Create a network
+            docker network create tcphttp-net
+            # Run ngix server
+            docker run --name=web1 --net=tcphttp-net --expose=80 --rm -d nginx:1.15-alpine
+            # Run tcphttp sercver
+            docker run --rm --net=tcphttp-net -d -p 8080:8080 tcphttp
+
+            # Wait for server running
+            sleep 1
+
+            # Request indirectly to the nginx server via the tcphttp server
+            curl --data-binary @- 'http://localhost:8080?host=web1&port=80' <<EOS
+            GET / HTTP/1.1
+            Host: web1
+            Connection: close
+
+            EOS
+
+  # (from: https://circleci.com/blog/publishing-npm-packages-using-circleci-2-0/)
+  npm_publish:
+    docker:
+    - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm install
+      - run:
+          name: Authenticate with registry
+          command: echo -e "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+      - run: npm publish
+
+workflows:
+  version: 2
+  node_tests:
+    jobs:
+      - node_10:
+          filters:
+            tags:
+              only: /.*/
+      - node_8:
+          filters:
+            tags:
+              only: /.*/
+      - node_6:
+          filters:
+            tags:
+              only: /.*/
+      - docker_test:
+          filters:
+            tags:
+              only: /.*/
+      - npm_publish:
+          requires:
+            - node_10
+            - node_8
+            - node_6
+            # Require docker test because test is only conducted on docker test
+            - docker_test
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
