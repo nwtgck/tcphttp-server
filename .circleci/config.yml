@@ -79,7 +79,10 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - docker_test
+      - docker_test:
+          filters:
+            tags:
+              only: /.*/
       - npm_publish:
           requires:
             - node_10
