@@ -38,7 +38,7 @@ jobs:
             # Run ngix server
             docker run --name=web1 --net=tcphttp-net --expose=80 --rm -d nginx:1.15-alpine
             # Run tcphttp sercver
-            docker run --rm --net=tcphttp-net -d -p 8080:8080 tcphttp
+            docker run --rm --net=tcphttp-net -d -p 8080:80 tcphttp --http-port=80
 
             # Wait for server running
             sleep 1
