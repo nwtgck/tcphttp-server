@@ -37,10 +37,7 @@ EOS
 
 ## Connection Flow
 
-```
-You ==HTTP Request => [tcphttp-server] ==TCP=> example.com:80
-You <=HTTP Response== [tcphttp-server] <=TCP== example.com:80
-```
+![TCPHTTP Server Connection Flow](doc-assets/connection-flow.svg)
 
 ## Run Server 
 
