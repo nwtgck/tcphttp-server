@@ -1,0 +1,11 @@
+digraph G {
+  rankdir=LR;
+  splines="line";
+  "curl" -> "TCPHTTP\nServer" [label="HTTP Request"];
+  "TCPHTTP\nServer" -> "curl" [label="HTTP Response"];
+  "TCPHTTP\nServer" -> "example.com:80" [label="TCP", dir="both"];
+  
+  "curl" [shape="box"]
+  "TCPHTTP\nServer" [shape="box3d"];
+  "example.com:80" [shape="box3d"]
+}
