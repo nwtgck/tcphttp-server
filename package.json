@@ -25,7 +25,7 @@
   "author": "Ryo Ota <nwtgck@gmail.com> (https://github.com/nwtgck)",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^10.12.9",
+    "@types/node": "^13.13.23",
     "@types/yargs": "^13.0.0",
     "typescript": "^3.1.6"
   },
