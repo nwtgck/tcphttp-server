@@ -22,7 +22,7 @@
     "type": "git",
     "url": "https://github.com/nwtgck/tcphttp-server"
   },
-  "author": "Ryo Ota <nwtgck@gmail.com> (https://github.com/nwtgck)",
+  "author": "Ryo Ota <nwtgck@nwtgck.org> (https://github.com/nwtgck)",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^10.12.9",

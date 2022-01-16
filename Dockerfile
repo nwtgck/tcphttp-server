@@ -1,6 +1,6 @@
 FROM node:10.16-alpine
 
-LABEL maintainer="Ryo Ota <nwtgck@gmail.com>"
+LABEL maintainer="Ryo Ota <nwtgck@nwtgck.org>"
 
 COPY . /app
 
